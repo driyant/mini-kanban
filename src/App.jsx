@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, getAllGroupTasks } from "./store/action";
 import { Heading, Box, Button, Grid, GridItem, Text, HStack } from "@chakra-ui/react";
 import CardTodoGroup from "./components/CardTodoGroup";
 import TaskItem from "./components/CardTaskItem";
+import axios from "axios";
+const baseUrl = import.meta.env.VITE_APP_BASEURL;
 
 function App() {
+  const dispatch = useDispatch();
+  const { groupTasks } = useSelector(state => state);
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      dispatch(login());
+    }
+    dispatch(getAllGroupTasks());
+    // fetchTodos();
+  }, [])
   return (
     <div className="App">
       <Box
@@ -35,7 +48,7 @@ function App() {
         templateColumns="repeat(4, 1fr)"
         gap={8}
       >
-        <CardTodoGroup />
+        <CardTodoGroup groupTasks={groupTasks}/>
       </Grid>
     </div>
   );
