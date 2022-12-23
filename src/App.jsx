@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Heading, Box, Button, Grid, GridItem, Text, HStack } from "@chakra-ui/react";
-import TodoGroup from "./components/TodoGroup";
+import CardTodoGroup from "./components/CardTodoGroup";
+import TaskItem from "./components/CardTaskItem";
 
 function App() {
   return (
@@ -30,27 +31,11 @@ function App() {
       </Box>
       <Grid
         height="auto"
-        border="1px"
         padding="24px"
         templateColumns="repeat(4, 1fr)"
         gap={8}
       >
-        <TodoGroup>
-          <Box
-            border="1px solid #01959F"
-            width="125px"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            padding="8px"
-            borderRadius="4px"
-          >
-            <Heading as="h4" color="#01959F" fontSize="14px" fontWeight="400">
-              Group Task 1
-            </Heading>
-          </Box>
-          <Text fontWeight="700">January - March</Text>
-        </TodoGroup>
+        <CardTodoGroup />
       </Grid>
     </div>
   );
