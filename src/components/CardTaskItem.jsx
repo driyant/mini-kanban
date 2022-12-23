@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Text, Progress } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import SettingButton from "./SettingButton";
+import ButtonNewTask from "./ButtonNewTask";
 
 const CardTaskItem = () => {
   const value = 100;
@@ -34,6 +35,7 @@ const CardTaskItem = () => {
           </Box>
           <SettingButton />
         </Box>
+        <ButtonNewTask />
       </Box>
     </>
   );
