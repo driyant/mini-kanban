@@ -8,7 +8,7 @@ const CardTaskItem = () => {
   const value = 100;
   return (
     <>
-      <Box border="1px solid #E0E0E0" padding="1rem">
+      <Box border="1px solid #E0E0E0" padding="1rem" margin="2px 0">
         <Text fontWeight="700">
           Re-designed the zero-g doggie bags. No more spills!
         </Text>
