@@ -49,7 +49,7 @@ function App() {
               Group Task 1
             </Heading>
           </Box>
-         
+          <Text fontWeight="700">January - March</Text>
         </TodoGroup>
       </Grid>
     </div>
