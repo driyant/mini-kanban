@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Heading, Box, Button } from "@chakra-ui/react";
+import { Heading, Box, Button, Grid, GridItem, Text, HStack } from "@chakra-ui/react";
+import TodoGroup from "./components/TodoGroup";
 
 function App() {
   return (
@@ -22,10 +23,35 @@ function App() {
           borderRadius="8px"
           _hover={{ bg: "#229da5" }}
           padding="4px 16px"
+          fontWeight="400"
         >
           + Add New Group
         </Button>
       </Box>
+      <Grid
+        height="auto"
+        border="1px"
+        padding="24px"
+        templateColumns="repeat(4, 1fr)"
+        gap={8}
+      >
+        <TodoGroup>
+          <Box
+            border="1px solid #01959F"
+            width="125px"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            padding="8px"
+            borderRadius="4px"
+          >
+            <Heading as="h4" color="#01959F" fontSize="14px" fontWeight="400">
+              Group Task 1
+            </Heading>
+          </Box>
+         
+        </TodoGroup>
+      </Grid>
     </div>
   );
 }
