@@ -29,7 +29,7 @@ export const login = () => {
         }
       })
       .then((data) => {
-        localStorage.setItem("token", data.auth_token);
+        return data;
       })
       .catch((err) => {
         console.log(err);
