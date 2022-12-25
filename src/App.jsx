@@ -15,9 +15,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      dispatch(login()).then((resp) => {
-        localStorage.setItem("token", resp.auth_token);
-      });
+      dispatch(login())
     }
     dispatch(fetchTaskItemGroup1());
     dispatch(fetchTaskItemGroup2());
