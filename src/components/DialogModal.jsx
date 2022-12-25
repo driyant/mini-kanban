@@ -7,7 +7,6 @@ import {
   ModalBody,
   Button,
   ModalCloseButton,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
@@ -17,7 +16,8 @@ const DialogModal = ({
   modalIsOpen,
   modalIsClose,
   createTaskHandler,
-  deleteHandler
+  deleteHandler,
+  updateHandler
 }) => {
   const getFirstTitle = title.split(" ")[0].toLowerCase();
   return (
@@ -42,7 +42,7 @@ const DialogModal = ({
                 type="submit"
                 colorScheme="blue"
                 mr={3}
-                onClick={createTaskHandler}
+                onClick={getFirstTitle === "create" ? createTaskHandler : updateHandler}
               >
                 Save Task
               </Button>

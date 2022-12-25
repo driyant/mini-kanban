@@ -8,6 +8,7 @@ const initState = {
   items2: [],
   items3: [],
   items4: [],
+  singleItem: {}
 }
 
 const reducer = (state = initState, action) => {
@@ -39,6 +40,12 @@ const reducer = (state = initState, action) => {
     return {
       ...state,
       items4: action.payload
+    }
+  }
+  if (action.type === "GET_SINGLE_ITEM") {
+    return {
+      ...state,
+      singleItem: action.payload
     }
   }
   return state;

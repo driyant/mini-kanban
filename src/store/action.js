@@ -149,3 +149,39 @@ export const deleteTaskItem = (itemId, todoId) => {
     .then(resp => resp);
   }
 }
+
+export const getSingeItem = (itemId, todoId) => {
+  return (dispatch) => {
+    return fetch(`https://todo-api-18-140-52-65.rakamin.com/todos/${todoId}/items/${itemId}`, {
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      dispatch({
+        type: "GET_SINGLE_ITEM",
+        payload: data
+      })
+      return data
+    })
+  }
+}
+
+export const updateSingleItem = (itemId, todoId, taskname) => {
+  return (dispatch) => {
+    return fetch(`https://todo-api-18-140-52-65.rakamin.com/todos/${todoId}/items/${itemId}`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "target_todo_id": +todoId,
+        "name": taskname
+      })
+    })
+    .then(resp => resp)
+  }
+}
