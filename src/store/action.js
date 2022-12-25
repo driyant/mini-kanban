@@ -30,10 +30,6 @@ export const login = () => {
       })
       .then((data) => {
         localStorage.setItem("token", data.auth_token);
-        localStorage.setItem("todo_id_1", "1");
-        localStorage.setItem("todo_id_2", "2");
-        localStorage.setItem("todo_id_3", "3");
-        localStorage.setItem("todo_id_4", "4");
       })
       .catch((err) => {
         console.log(err);
@@ -126,7 +122,6 @@ export const fetchTaskItemGroup4 = () => {
 };
 
 export const createTask = (id, data) => {
-  console.log(id, data, "<<<<< action creator");
   return (dispatch) => {
     return fetch(
       `https://todo-api-18-140-52-65.rakamin.com/todos/${id}/items`,
@@ -141,3 +136,16 @@ export const createTask = (id, data) => {
     ).then((resp) => resp);
   };
 };
+
+export const deleteTaskItem = (itemId, todoId) => {
+  return (dispatch) => {
+    return fetch(`https://todo-api-18-140-52-65.rakamin.com/todos/${todoId}/items/${itemId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      }
+    })
+    .then(resp => resp);
+  }
+}

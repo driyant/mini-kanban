@@ -36,7 +36,7 @@ const CardTaskItem = ({ items, todoId }) => {
                   </Text>
                 )}
               </Box>
-              <DialogMenu todoId={item.todo_id}/>
+              <DialogMenu itemId={item.id} todoId={item.todo_id}/>
             </Box>
           </Box>
         );

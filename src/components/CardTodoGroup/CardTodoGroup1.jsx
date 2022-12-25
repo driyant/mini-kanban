@@ -43,7 +43,7 @@ const CardTodoGroup1 = ({ groupTasks }) => {
           </Heading>
         </Box>
         <Text fontWeight="700">Januari - Feb</Text>
-        <CardTaskItem items={items1} todoId={localStorage.getItem("todo_id_1")}/>
+        <CardTaskItem items={items1} todoId={1}/>
       </GridItem>
     </>
   );

@@ -10,10 +10,10 @@ import {
 } from "../../store/action";
 
 const CardTodoGroup2 = ({ groupTasks }) => {
-  const { items2 } = useSelector(state => state);
+  const { items2 } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchTaskItemGroup2())
+    dispatch(fetchTaskItemGroup2());
   }, []);
   return (
     <>
@@ -36,17 +36,12 @@ const CardTodoGroup2 = ({ groupTasks }) => {
           padding="8px"
           borderRadius="4px"
         >
-          <Heading
-            as="h4"
-            color={`#f7c654`}
-            fontSize="14px"
-            fontWeight="400"
-          >
+          <Heading as="h4" color={`#f7c654`} fontSize="14px" fontWeight="400">
             Group Task 2
           </Heading>
         </Box>
         <Text fontWeight="700">March - April</Text>
-        <CardTaskItem items={items2} />
+        <CardTaskItem items={items2} todoId={2} />
       </GridItem>
     </>
   );

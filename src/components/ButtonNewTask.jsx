@@ -3,7 +3,13 @@ import { Box, Text, Input, FormControl, FormLabel } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import DialogModal from "./DialogModal";
 import { useDispatch } from "react-redux";
-import { createTask, fetchTaskItemGroup1 } from "../store/action";
+import {
+  createTask,
+  fetchTaskItemGroup1,
+  fetchTaskItemGroup2,
+  fetchTaskItemGroup3,
+  fetchTaskItemGroup4,
+} from "../store/action";
 
 const ButtonNewTask = ({ todoId }) => {
   const dispatch = useDispatch();
@@ -22,12 +28,18 @@ const ButtonNewTask = ({ todoId }) => {
       name: taskName,
       progress_percentage: +progress,
     };
-    dispatch(createTask(todoId, obj)).then((resp) => {
-      if (resp.ok) setModalIsOpen(false);
-      setTaskName("");
-      setProgress("");
-    });
-    dispatch(fetchTaskItemGroup1());
+    dispatch(createTask(todoId, obj))
+      .then((resp) => {
+        if (resp.ok) setModalIsOpen(false);
+        setTaskName("");
+        setProgress("");
+      })
+      .then(() => {
+        dispatch(fetchTaskItemGroup1());
+        dispatch(fetchTaskItemGroup2());
+        dispatch(fetchTaskItemGroup3());
+        dispatch(fetchTaskItemGroup4());
+      });
   };
   return (
     <>
@@ -84,4 +96,4 @@ const ButtonNewTask = ({ todoId }) => {
   );
 };
 
-export default React.memo(ButtonNewTask);
+export default ButtonNewTask;

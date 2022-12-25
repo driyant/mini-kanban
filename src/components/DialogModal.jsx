@@ -17,6 +17,7 @@ const DialogModal = ({
   modalIsOpen,
   modalIsClose,
   createTaskHandler,
+  deleteHandler
 }) => {
   const getFirstTitle = title.split(" ")[0].toLowerCase();
   return (
@@ -47,7 +48,7 @@ const DialogModal = ({
               </Button>
             )}
             {getFirstTitle === "delete" && (
-              <Button colorScheme="red" mr={3}>
+              <Button colorScheme="red" mr={3} onClick={deleteHandler}>
                 Delete
               </Button>
             )}

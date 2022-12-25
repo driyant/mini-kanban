@@ -36,7 +36,7 @@ const CardTodoGroup4 = ({ groupTasks }) => {
           </Heading>
         </Box>
         <Text fontWeight="700">May - June</Text>
-        <CardTaskItem items={items4}/>
+        <CardTaskItem items={items4} todoId={4}/>
       </GridItem>
     </>
   );
