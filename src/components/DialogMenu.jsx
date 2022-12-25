@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Menu,
   MenuList,
@@ -11,8 +11,13 @@ import {
 } from "@chakra-ui/react";
 import SettingButton from "./SettingButton";
 import DialogModal from "./DialogModal";
-import { deleteTaskItem, getSingeItem, updateSingleItem } from "../store/action";
-import { useDispatch } from "react-redux";
+import {
+  deleteTaskItem,
+  getSingeItem,
+  updateSingleItem,
+  createTask,
+} from "../store/action";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchTaskItemGroup1,
   fetchTaskItemGroup2,
@@ -26,6 +31,7 @@ const DialogMenu = ({ itemId, todoId }) => {
   const [typeModal, setTypeModal] = useState("");
   const [taskName, setTaskName] = useState("");
   const [progressPercentage, setProgressPercentage] = useState(0);
+  const { items1, items2, items3, items4 } = useSelector((state) => state);
   const getModalClose = () => {
     setModalIsOpen(false);
   };
@@ -50,15 +56,147 @@ const DialogMenu = ({ itemId, todoId }) => {
   const updateHandler = (e) => {
     e.preventDefault();
     dispatch(updateSingleItem(itemId, todoId, taskName))
-    .then(resp => {
-      if(resp.ok) setModalIsOpen(false)
-      dispatch(fetchTaskItemGroup1());
-      dispatch(fetchTaskItemGroup2());
-      dispatch(fetchTaskItemGroup3());
-      dispatch(fetchTaskItemGroup4());
-    })
-    .catch(err => console.log(err));
+      .then((resp) => {
+        if (resp.ok) setModalIsOpen(false);
+        dispatch(fetchTaskItemGroup1());
+        dispatch(fetchTaskItemGroup2());
+        dispatch(fetchTaskItemGroup3());
+        dispatch(fetchTaskItemGroup4());
+      })
+      .catch((err) => console.log(err));
   };
+  const moveRightHandler = () => {
+    if (todoId === 1) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(2, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+    if (todoId === 2) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(3, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+    if (todoId === 3) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(4, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+    if (todoId === 4) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(1, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+  };
+  const leftHandler = () => {
+    if (todoId === 1) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(4, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+    if (todoId === 2) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(1, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+    if (todoId === 3) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(2, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+    if (todoId === 4) {
+      dispatch(getSingeItem(itemId, todoId)).then((data) => {
+        dispatch(
+          createTask(3, {
+            name: data.name,
+            progress_percentage: data.progress_percentage,
+          })
+        );
+        dispatch(deleteTaskItem(data.id, data.todo_id)).then((resp) => {
+          dispatch(fetchTaskItemGroup1());
+          dispatch(fetchTaskItemGroup2());
+          dispatch(fetchTaskItemGroup3());
+          dispatch(fetchTaskItemGroup4());
+        });
+      });
+    }
+  }
   return (
     <>
       <Menu>
@@ -66,8 +204,8 @@ const DialogMenu = ({ itemId, todoId }) => {
           <SettingButton />
         </MenuButton>
         <MenuList marginLeft="1rem">
-          <MenuItem>Move Right</MenuItem>
-          <MenuItem>Move Left</MenuItem>
+          <MenuItem onClick={moveRightHandler}>Move Right</MenuItem>
+          <MenuItem onClick={leftHandler}>Move Left</MenuItem>
           <MenuItem
             onClick={() => {
               setTypeModal("edit");
