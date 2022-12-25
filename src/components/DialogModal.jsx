@@ -11,7 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
-const DialogModal = ({ title, children, modalIsOpen, modalIsClose, createTaskHandler }) => {
+const DialogModal = ({
+  title,
+  children,
+  modalIsOpen,
+  modalIsClose,
+  createTaskHandler,
+}) => {
   const getFirstTitle = title.split(" ")[0].toLowerCase();
   return (
     <>
@@ -31,7 +37,12 @@ const DialogModal = ({ title, children, modalIsOpen, modalIsClose, createTaskHan
               Close
             </Button>
             {(getFirstTitle === "create" || getFirstTitle === "edit") && (
-              <Button type="submit" colorScheme="blue" mr={3} onClick={createTaskHandler}>
+              <Button
+                type="submit"
+                colorScheme="blue"
+                mr={3}
+                onClick={createTaskHandler}
+              >
                 Save Task
               </Button>
             )}

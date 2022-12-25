@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/icons";
 import SettingButton from "./SettingButton";
 
-const DialogMenu = () => {
+const DialogMenu = ({itemId}) => {
   return (
     <>
       <Menu>
