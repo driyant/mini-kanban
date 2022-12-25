@@ -1,32 +1,22 @@
-import { useState } from "react";
-import { Heading, Box, Button } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "./store/action";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Homepage from "./pages/Homepage";
 
 function App() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      dispatch(login());
+    }
+    navigate("/v1");
+  }, []);
   return (
-    <div className="App">
-      <Box
-        as="header"
-        borderBottom="1px solid #E0E0E0"
-        display="flex"
-        alignItems="center"
-        padding="10px 0"
-        paddingLeft="18px"
-      >
-        <Heading as="h2" fontSize={18} marginRight="20px" lineHeight="28px">
-          Product Roadmap
-        </Heading>
-        <Button
-          backgroundColor="#01959F"
-          color="white"
-          fontSize="14px"
-          borderRadius="8px"
-          _hover={{ bg: "#229da5" }}
-          padding="4px 16px"
-        >
-          + Add New Group
-        </Button>
-      </Box>
-    </div>
+    <Routes>
+      <Route path="/v1" element={<Homepage />} />
+    </Routes>
   );
 }
 
